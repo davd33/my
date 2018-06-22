@@ -55,7 +55,7 @@ $color-4: transparentize($color-highlight, .2);
 
     .title {
       position: absolute;
-      left: 50%;
+      right: 15%;
       top: 80px;
 
       font-family: sans-serif;
@@ -76,6 +76,7 @@ $color-4: transparentize($color-highlight, .2);
   .cv {
 
     $pic-size: 150px;
+    $max-width: 800px;
 
     margin-top: 190px;
     padding-bottom: 90px;
@@ -120,6 +121,7 @@ $color-4: transparentize($color-highlight, .2);
           text-align: left;
           line-height: 150%;
           width: 80%;
+          max-width: $max-width;
           margin: 0 auto;
 
           .desc {
@@ -132,6 +134,8 @@ $color-4: transparentize($color-highlight, .2);
         }
 
         .info {
+          max-width: $max-width;
+          margin: 0 auto;
           display: flex;
           flex-direction: column;
           background: $color-1;
@@ -177,6 +181,7 @@ $color-4: transparentize($color-highlight, .2);
 
     .txt-section {
       width: 90%;
+      max-width: $max-width;
       margin: 0 auto;
       padding-top: 50px;
       text-align: center;
@@ -252,3 +257,4 @@ $color-4: transparentize($color-highlight, .2);
 }
 
 @import "app.component.small";
+@import "app.component.large";

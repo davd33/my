@@ -1,8 +1,46 @@
 @media screen and (max-width: 700px) {
-  .cv {
-    .txt-section {
-      .text {
-        columns: 1;
+  .container {
+    header {
+      .title {
+        right: 0;
+        font-size: 2em;
+        transform: translate(-16%);
+      }
+    }
+    .cv {
+      margin-top: 235px;
+
+      .first-txt-section {
+        margin-top: 40px;
+
+        .text {
+          columns: 1;
+        }
+      }
+
+      .my-pic {
+        left: calc(50% - 75px);
+        margin: 10px auto;
+        top: 145px;
+      }
+
+      .job-section {
+        .job {
+          .job-contents {
+            flex-direction: column;
+
+            text-align: justify;
+
+            .desc {
+              max-width: 100%;
+            }
+
+            .tasks {
+              width: calc(100% + 40px);
+              margin-left: -40px;
+            }
+          }
+        }
       }
     }
   }
