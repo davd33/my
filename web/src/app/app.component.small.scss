@@ -1,8 +1,8 @@
 @media screen and (max-width: 700px) {
   .cv {
-    .intro-section {
+    .txt-section {
       .text {
-        background: red;
+        columns: 1;
       }
     }
   }
