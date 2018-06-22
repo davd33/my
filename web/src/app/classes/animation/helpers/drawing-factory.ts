@@ -1,25 +1,21 @@
 import {P5} from "./p5";
-import {Shape} from "../drawings/shape";
+import {Circle} from "../drawings/circle";
 import {Point} from "./point";
+import {Color} from "../../helpers/color";
 
 export class DrawingFactory {
 
   constructor(private readonly p5: P5) {
   }
 
-  private newRandomShape(): Shape {
-    let s = new Shape(this.p5, Point.random(this.p5))
-    let n = Math.random() * (10 - 3) + 3
-    for (let i = 0; i < n; i++) {
-      s.addPoint(Point.random(this.p5))
-    }
-    return s
+  private newCircleShape(): Circle {
+    return new Circle(this.p5, Color.random(), Point.random(this.p5))
   }
 
-  public newRandomShapes(n: number): Shape[] {
-    let shapes: Shape[] = []
+  public newRandomShapes(n: number): Circle[] {
+    let shapes: Circle[] = []
     for (let i = 0; i < n; i++) {
-      shapes.push(this.newRandomShape())
+      shapes.push(this.newCircleShape())
     }
     return shapes
   }

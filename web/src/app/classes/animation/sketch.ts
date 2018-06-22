@@ -2,13 +2,13 @@ import {ElementRef} from "@angular/core";
 import {DrawingFactory} from "./helpers/drawing-factory";
 import {SketchFunc} from "./helpers/sketch-func";
 import {P5} from "./helpers/p5";
-import {Shape} from "./drawings/shape";
+import {Circle} from "./drawings/circle";
 
 export class Sketch implements SketchFunc {
 
   private readonly p5: P5
   private _factory: DrawingFactory
-  private _shapes: Shape[]
+  private _shapes: Circle[]
 
   constructor(private readonly animationContainer: ElementRef) {
 
@@ -29,8 +29,7 @@ export class Sketch implements SketchFunc {
 
         // create drawings
         self._factory = new DrawingFactory(self.p5)
-        self._shapes = self._factory.newRandomShapes(p.width * p.height * .1)
-        console.log(self._shapes)
+        self._shapes = self._factory.newRandomShapes(1000)
       }
 
       p.draw = function () {
