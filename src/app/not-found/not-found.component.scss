@@ -10,4 +10,15 @@
   transform: translate(-50%, -50%);
   font-family: $font-txt;
   font-size: 1.5em;
+  color: $color-lighter;
+}
+
+a {
+  text-decoration: none;
+  color: $color-lighter;
+  font-size: .8em;
+
+  &:hover {
+    color: $color-dark;
+  }
 }

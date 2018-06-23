@@ -3,16 +3,39 @@ import {DrawingFactory} from "./helpers/drawing-factory";
 import {SketchFunc} from "./helpers/sketch-func";
 import {P5} from "./helpers/p5";
 import {Circle} from "./drawings/circle";
+import {WindowService} from "../../services/window.service";
 
 export class Sketch implements SketchFunc {
 
-  private readonly p5: P5
+  private p5: P5
   private _factory: DrawingFactory
   private _shapes: Circle[]
 
-  constructor(private readonly animationContainer: ElementRef) {
+  constructor(private readonly animationContainer: ElementRef,
+              private readonly windowSvc: WindowService) {
 
     this.p5 = new P5(this)
+
+    windowSvc.obs.subscribe(e => {
+      this.resizeCanvas()
+      this.init()
+    })
+  }
+
+  private init() {
+    this._factory = new DrawingFactory(this.p5)
+    this._shapes = this._factory.newRandomShapes(1000)
+  }
+
+  private createCanvas() {
+    let container = this.animationContainer.nativeElement
+    let canvas = this.p5.instance.createCanvas(container.clientWidth, container.clientHeight)
+    canvas.parent(container)
+  }
+
+  private resizeCanvas() {
+    let container = this.animationContainer.nativeElement
+    this.p5.instance.resizeCanvas(container.clientWidth, container.clientHeight)
   }
 
   public sketchFunc(): (p: any) => void {
@@ -22,14 +45,8 @@ export class Sketch implements SketchFunc {
     return p => {
 
       p.setup = function () {
-        // create canvas
-        let container = self.animationContainer.nativeElement
-        let canvas = p.createCanvas(container.clientWidth, container.clientHeight)
-        canvas.parent(container)
-
-        // create drawings
-        self._factory = new DrawingFactory(self.p5)
-        self._shapes = self._factory.newRandomShapes(1000)
+        self.createCanvas()
+        self.init()
       }
 
       p.draw = function () {
