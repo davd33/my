@@ -1,7 +1,7 @@
 export class Color {
 
   private static readonly COLORS = [
-    '#eee', '#fff'
+    '#292929', '#0b0b0b'
   ]
 
   public static random(): string {

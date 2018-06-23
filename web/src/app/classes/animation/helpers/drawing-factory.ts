@@ -1,7 +1,7 @@
 import {P5} from "./p5";
 import {Circle} from "../drawings/circle";
 import {Point} from "./point";
-import {Color} from "../../helpers/color";
+import {Color} from "./color";
 
 export class DrawingFactory {
 

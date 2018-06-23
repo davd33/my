@@ -1,10 +1,18 @@
 $dotted-img: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2r9//38gYGAEESAAEGAAasgJOgzOKCoAAAAASUVORK5CYII=);
 
-$color-highlight: gold;
-$color-lighter: white;
-$color-light: #fbfbfb;
-$color-darker: #222;
-$color-dark: #444;
-$color-gray: #ccc;
-$color-principal: #8889ce;
-$color-secondary: darkblue;
+$color-highlight: black;
+$color-highlight-2: darkblue;
+$color-lighter: #ecdcf6;
+$color-light: #222;
+$color-darker: #222222;
+$color-dark: #fff;
+$color-gray: #ecdcf6;
+$color-principal: $color-gray;
+
+$color-1: transparentize($color-principal, .4);
+$color-2: $color-highlight-2;
+$color-3: transparentize($color-lighter, .1);
+$color-4: transparentize($color-highlight, .2);
+
+$font-title: 'Fjalla One', sans-serif;
+$font-txt: 'PT Sans Narrow', sans-serif;

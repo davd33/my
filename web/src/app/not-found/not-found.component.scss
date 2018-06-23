@@ -1,0 +1,13 @@
+@import "../common";
+
+:host {
+  width: 80%;
+  background: rgba(255,255,255,.2);
+  position: fixed;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $font-txt;
+  font-size: 1.5em;
+}
