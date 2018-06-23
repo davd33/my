@@ -1,9 +1,10 @@
 @media screen and (max-width: 700px) {
   .cv-container {
     .title {
+      top: 60px;
       left: 50%;
-      font-size: 2em;
       transform: translate(-50%);
+      font-size: 2em;
       width: 100%;
     }
 
@@ -19,7 +20,8 @@
       }
 
       .my-pic {
-        left: calc(50% - 75px);
+        left: 50%;
+        transform: translate(-50%);
         margin: 10px auto;
         top: 145px;
       }
