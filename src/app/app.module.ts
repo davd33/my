@@ -8,13 +8,17 @@ import { CvComponent } from './cv/cv.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PersoWorksComponent } from './perso-works/perso-works.component';
 import {WindowService} from "./services/window.service";
+import { TransportSpeedCalculatorComponent } from './permaculture/transport-speed-calculator/transport-speed-calculator.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CvComponent,
     NotFoundComponent,
-    PersoWorksComponent
+    PersoWorksComponent,
+    TransportSpeedCalculatorComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,14 @@ import {WindowService} from "./services/window.service";
       {
         path: 'cv',
         component: CvComponent
+      },
+      {
+        path: 'permaculture/transports/speed-calculator',
+        component: TransportSpeedCalculatorComponent
+      },
+      {
+        path: 'blog',
+        component: BlogComponent
       },
       {
         path: '',
