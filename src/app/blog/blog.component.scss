@@ -1,12 +1,48 @@
 @import "../common";
 
 :host {
-  position: fixed;
-  -webkit-overflow-scrolling: touch;
-  width: 100vw;
-  height: calc(100vh - 40px);
-  overflow: scroll;
-  top: 45px;
+  @extend %component-container;
 }
 
-.container {}
+h1 {
+  @extend %component-title-2;
+}
+
+.container {
+  @extend %component-content;
+
+  %some-text {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .no-article-found {
+    @extend %some-text;
+  }
+
+  .create-article {
+    @extend %some-text;
+    text-align: left;
+    font-size: 1em;
+
+    a {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:after {
+        content: '|';
+        padding: 0 5px;
+      }
+
+      &:first-of-type::after {
+        content: '';
+        padding: 0;
+      }
+    }
+  }
+}

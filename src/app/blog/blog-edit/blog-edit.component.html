@@ -1,0 +1,14 @@
+<h1>Blog Editing</h1>
+<div class="container">
+  <div class="editing">
+    <p>New Post</p>
+    <div class="controls">
+      <a (click)="toggleWriteMode()">{{writeMode ? '👁' : '✍️'}}</a>
+      <a (click)="save()">💾</a>
+    </div>
+    <div class="edit-container">
+      <textarea [(ngModel)]="mdText" [ngClass]="textareaClass"></textarea>
+      <div class="apercu" #apercu [ngClass]="apercuClass"></div>
+    </div>
+  </div>
+</div>

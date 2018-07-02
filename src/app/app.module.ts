@@ -10,6 +10,12 @@ import { PersoWorksComponent } from './perso-works/perso-works.component';
 import {WindowService} from "./services/window.service";
 import { TransportSpeedCalculatorComponent } from './permaculture/transport-speed-calculator/transport-speed-calculator.component';
 import { BlogComponent } from './blog/blog.component';
+import {BlogService} from "./services/blog.service";
+import { LoginComponent } from './login/login.component';
+import {HttpClientModule} from "@angular/common/http";
+import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
+import {UserService} from "./services/user.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,10 +24,15 @@ import { BlogComponent } from './blog/blog.component';
     NotFoundComponent,
     PersoWorksComponent,
     TransportSpeedCalculatorComponent,
-    BlogComponent
+    BlogComponent,
+    LoginComponent,
+    BlogEditComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: 'personal-works',
@@ -40,6 +51,14 @@ import { BlogComponent } from './blog/blog.component';
         component: BlogComponent
       },
       {
+        path: 'blog-edit',
+        component: BlogEditComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
         path: '',
         redirectTo: '/cv',
         pathMatch: 'full'
@@ -50,7 +69,7 @@ import { BlogComponent } from './blog/blog.component';
       }
     ])
   ],
-  providers: [MouseService, WindowService],
+  providers: [MouseService, WindowService, BlogService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

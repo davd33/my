@@ -1,0 +1,23 @@
+<h1>Sign In</h1>
+
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="formGroup">
+      <div>
+        <label>
+          Username:
+          <input type="text" formControlName="username">
+        </label>
+      </div>
+      <div>
+        <label>
+          Password:
+          <input type="password" formControlName="password">
+        </label>
+      </div>
+      <div>
+        <button (click)="login()">➝ Log In</button>
+      </div>
+    </form>
+  </div>
+</div>

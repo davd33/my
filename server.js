@@ -4,6 +4,7 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport')
 
 // Get our API routes
 const api = require('./server/routes/api');
@@ -17,6 +18,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist/my')));
+
+// Passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Set our api routes
 app.use('/api', api);

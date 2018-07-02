@@ -1,2 +1,9 @@
+<h1>Blog</h1>
 <div class="container">
+  <div class="create-article" *ngIf="adminLoggedIn">
+    <a (click)="createArticle()">Write new post</a>
+  </div>
+  <div class="no-article-found" *ngIf="noPostYet">
+    <p>No post yet...</p>
+  </div>
 </div>

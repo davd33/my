@@ -2,6 +2,8 @@ import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/c
 import {Sketch} from "./classes/animation/sketch";
 import {MouseService} from "./services/mouse.service";
 import {WindowService} from "./services/window.service";
+import {UserService} from "./services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,9 @@ export class AppComponent implements OnInit {
   @ViewChild('cvContainer') cvContainer: ElementRef
 
   constructor(private mouseSvc: MouseService,
-              private windowSvc: WindowService) {
+              private windowSvc: WindowService,
+              private router: Router,
+              private userSvc: UserService) {
   }
 
   @HostListener('window:resize', ['$event'])
@@ -24,5 +28,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     new Sketch(this.canvasContainer, this.windowSvc)
+  }
+
+  logout() {
+    this.userSvc.logout()
+    this.router.navigate(['/login'])
+  }
+
+  get userName(): string {
+    return this.userSvc.user.username
+  }
+
+  get isUserLoggedIn(): boolean {
+    return this.userSvc.isLoggedIn
   }
 }

@@ -1,0 +1,140 @@
+@import "../../common";
+
+:host {
+  @extend %component-container;
+}
+
+h1 {
+  @extend %component-title-2;
+}
+
+.container {
+  @extend %component-content;
+
+  %some-text {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .editing {
+    @extend %some-text;
+
+    overflow: hidden;
+
+    .controls {
+      margin-bottom: 10px;
+
+      a {
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 10px;
+        margin-right: 5px;
+
+        &:hover {
+          background: $color-5;
+          color: $color-highlight-2;
+        }
+      }
+    }
+
+    .edit-container {
+      $min-height: 200px;
+
+      textarea {
+        float: left;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        border: 0;
+        border-top: 2px solid $color-darker;
+        box-shadow: 0 52px 118px -120px $color-darker inset;
+        height: 0;
+        min-height: 0;
+        background: transparent;
+        font-family: $font-txt;
+        transform: translate(-100%);
+        opacity: 0;
+        padding: 10px;
+      }
+
+      textarea.write-mode {
+        animation: textarea-in .2s ease-in forwards;
+        animation-delay: .2s;
+      }
+
+      textarea.see-mode {
+        animation: textarea-out .2s ease-in forwards;
+      }
+
+      .apercu {
+        width: 100%;
+        opacity: 0;
+        transform: translate(100%);
+        border-top: 2px solid $color-darker;
+        box-shadow: 0 52px 118px -120px $color-darker inset;
+        background: $color-1;
+        padding: 10px;
+        min-height: $min-height;
+      }
+
+      .apercu.write-mode {
+        animation: apercu-out .2s ease-in forwards;
+      }
+
+      .apercu.see-mode {
+        animation: apercu-in .2s ease-in forwards;
+        animation-delay: .2s;
+      }
+
+      @keyframes textarea-out {
+        0% {
+          transform: translate(0);
+          opacity: 1;
+          min-height: 200px;
+        }
+        99% {
+          transform: translate(-100%);
+          opacity: 0;
+        }
+        100% {
+          min-height: 0;
+        }
+      }
+
+      @keyframes textarea-in {
+        0% {
+          min-height: $min-height;
+          transform: translate(-100%);
+          opacity: 0;
+        }
+        100% {
+          min-height: $min-height;
+          opacity: 1;
+          transform: translate(0);
+        }
+      }
+
+      @keyframes apercu-in {
+        0% {
+          opacity: 0;
+          transform: translate(100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(0);
+        }
+      }
+
+      @keyframes apercu-out {
+        0% {
+          opacity: 1;
+          transform: translate(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(100%);
+        }
+      }
+    }
+  }
+}

@@ -26,6 +26,35 @@
       background: transparentize($color-darker, .8);
       box-shadow: 1px 0 2px black;
 
+      &:last-of-type {
+        width: auto;
+        right: 0;
+        background: transparent;
+        box-shadow: 0 0 0 transparent;
+
+        .user {
+          padding: 11px 10px;
+          color: $color-lighter;
+          font-style: italic;
+          font-family: $font-txt;
+
+          a {
+            display: inline;
+            text-transform: none;
+            font-style: normal;
+            margin: 0;
+            padding: 0 0 0 10px;
+            color: $color-dark;
+
+            &:hover {
+              text-decoration: underline;
+              background: transparent;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
       a {
         display: block;
         margin: 5px 10px;

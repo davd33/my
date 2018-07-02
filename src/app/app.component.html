@@ -5,7 +5,15 @@
       <a routerLink="/cv" routerLinkActive="active">CV</a>
       <!--<a routerLink="/personal-works" routerLinkActive="active">Own projects</a>-->
       <!--<a routerLink="/permaculture/transports/speed-calculator" routerLinkActive="active">Your car speed</a>-->
-      <!--<a routerLink="/blog" routerLinkActive="active">My Blog</a>-->
+      <a routerLink="/blog" routerLinkActive="active">Blog</a>
+    </nav>
+    <nav>
+      <div *ngIf="isUserLoggedIn" class="user">
+        {{userName}}
+        <a *ngIf="isUserLoggedIn" (click)="logout()">Log out</a>
+      </div>
+
+      <a *ngIf="!isUserLoggedIn" routerLink="/login" routerLinkActive="active">Sign in</a>
     </nav>
   </header>
 

@@ -1,14 +1,10 @@
 @import "../common";
 
-.cv-container {
-  position: fixed;
-  -webkit-overflow-scrolling: touch;
-  width: 100vw;
-  height: calc(100vh - 40px);
-  overflow: scroll;
-  top: 45px;
+:host {
+  @extend %component-container;
+}
 
-  font-family: $font-txt;
+.cv-container {
 
   footer {
     background: transparentize($color-dark, .8);
@@ -47,11 +43,8 @@
     $pic-size: 150px;
     $max-width: 800px;
 
+    @extend %component-content;
     margin-top: 190px;
-    padding-bottom: 90px;
-    border-top: 2px solid $color-highlight;
-    min-height: 100vh;
-    background: $color-3;
 
     %section-h3 {
       text-transform: uppercase;
@@ -234,12 +227,7 @@
     right: 16%;
     top: 80px;
 
-    font-family: $font-title;
-    font-size: 3em;
-    text-transform: uppercase;
-    text-align: center;
-    color: $color-lighter;
-    text-shadow: 2px 0 1px $color-darker;
+    @extend %component-title;
 
     .sub-title {
       font-size: .4em;
