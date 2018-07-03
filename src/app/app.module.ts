@@ -51,7 +51,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         component: BlogComponent
       },
       {
-        path: 'blog-edit',
+        path: 'blog-edit/:id',
         component: BlogEditComponent
       },
       {

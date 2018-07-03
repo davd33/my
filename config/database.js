@@ -13,10 +13,10 @@ if (!process.env.ADMIN_PASSWORD) {
 
 module.exports = {
   mongo_url: process.env.MONGO_URL || 'mongodb://127.0.0.1:27017',
+  db: process.env.MONGO_DB,
   auth: {
     secret: process.env.AUTH_SECRET,
-    sessionsON: false,
-    db: process.env.MONGO_DB
+    sessionsON: false
   },
   collections: {
     ARTICLE: 'article'

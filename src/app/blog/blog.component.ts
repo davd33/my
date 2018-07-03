@@ -40,7 +40,7 @@ export class BlogComponent implements OnInit {
   }
 
   createArticle() {
-    this.router.navigate(['/blog-edit'])
+    this.router.navigate(['/blog-edit', -1])
   }
 
   delete(id: string) {
@@ -51,6 +51,10 @@ export class BlogComponent implements OnInit {
           this.articles = this.articles.filter(a => a._id !== id)
         }
       })
+  }
+
+  edit(id: string) {
+    this.router.navigate(['/blog-edit', id])
   }
 
 }

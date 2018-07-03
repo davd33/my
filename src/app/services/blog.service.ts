@@ -32,11 +32,11 @@ export class BlogService {
 
     if (!id) {
       return this.http.put(`${this.serviceUtil.apiUrl}/blog/edit`, body, options)
-        .pipe(catchError(ServiceUtil.handleError<any>('get allArticles PUT', null)))
+        .pipe(catchError(ServiceUtil.handleError<any>('get editArticle PUT', null)))
     }
 
     return this.http.post<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}`, body, options)
-      .pipe(catchError(ServiceUtil.handleError<any>('get allArticles POST', null)))
+      .pipe(catchError(ServiceUtil.handleError<any>('get editArticle POST', null)))
   }
 
   public delete(id: string): Observable<any> {
@@ -52,5 +52,15 @@ export class BlogService {
   public get allArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.serviceUtil.apiUrl + '/blog/all')
       .pipe(catchError(ServiceUtil.handleError<Article[]>('get allArticles', [])))
+  }
+
+  public getArticle(id: string): Observable<any> {
+    let options = {
+      headers: new HttpHeaders({
+        'Authorization': `bearer ${this.userSvc.user.token}`
+      })
+    }
+    return this.http.get<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}`, options)
+      .pipe(catchError(ServiceUtil.handleError<any>('getArticle', null)))
   }
 }
