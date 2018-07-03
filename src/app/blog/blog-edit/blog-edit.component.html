@@ -1,10 +1,11 @@
 <h1>Blog Editing</h1>
 <div class="container">
   <div class="editing">
-    <p>New Post</p>
+    <p class="msg" [ngClass]="messageClass">{{message}}</p>
     <div class="controls">
-      <a (click)="toggleWriteMode()">{{writeMode ? '👁' : '✍️'}}</a>
-      <a (click)="save()">💾</a>
+      <a (click)="toggleWriteMode()" *ngIf="!writeMode" title="edit"><i class="far fa-eye-slash"></i></a>
+      <a (click)="toggleWriteMode()" *ngIf="writeMode" title="view"><i class="far fa-eye"></i></a>
+      <a (click)="save()" title="save file"><i class="fas fa-save"></i></a>
     </div>
     <div class="edit-container">
       <textarea [(ngModel)]="mdText" [ngClass]="textareaClass"></textarea>

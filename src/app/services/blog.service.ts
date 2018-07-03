@@ -29,7 +29,6 @@ export class BlogService {
         'Authorization': `bearer ${this.userSvc.user.token}`
       })
     }
-    console.log(`bearer ${this.userSvc.user.token}`)
 
     if (!id) {
       return this.http.put(`${this.serviceUtil.apiUrl}/blog/edit`, body, options)
@@ -38,6 +37,16 @@ export class BlogService {
 
     return this.http.post<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}`, body, options)
       .pipe(catchError(ServiceUtil.handleError<any>('get allArticles POST', null)))
+  }
+
+  public delete(id: string): Observable<any> {
+    let options = {
+      headers: new HttpHeaders({
+        'Authorization': `bearer ${this.userSvc.user.token}`
+      })
+    }
+    return this.http.delete(`${this.serviceUtil.apiUrl}/blog/edit/${id}`, options)
+      .pipe(catchError(ServiceUtil.handleError<any>('delete', {ok: false})))
   }
 
   public get allArticles(): Observable<Article[]> {

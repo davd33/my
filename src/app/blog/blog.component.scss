@@ -22,26 +22,36 @@ h1 {
     @extend %some-text;
   }
 
+  .posts {
+    @extend %some-text;
+    text-align: left;
+
+    .post {
+      margin-bottom: 50px;
+      background: $color-1;
+      padding: 0 10px;
+
+      .post-ctrl {
+        font-size: .6em;
+        padding: 10px 0 0;
+        cursor: pointer;
+        width: 1em;
+      }
+    }
+  }
+
   .create-article {
     @extend %some-text;
+    margin: 10px auto 20px;
     text-align: left;
     font-size: 1em;
 
     a {
       cursor: pointer;
+      padding: 0 10px;
 
       &:hover {
-        text-decoration: underline;
-      }
-
-      &:after {
-        content: '|';
-        padding: 0 5px;
-      }
-
-      &:first-of-type::after {
-        content: '';
-        padding: 0;
+        color: $color-highlight-2;
       }
     }
   }

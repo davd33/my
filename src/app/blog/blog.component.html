@@ -1,9 +1,18 @@
 <h1>Blog</h1>
 <div class="container">
   <div class="create-article" *ngIf="adminLoggedIn">
-    <a (click)="createArticle()">Write new post</a>
+    <a (click)="createArticle()" title="write new post"><i class="fas fa-file-alt"></i></a>
   </div>
   <div class="no-article-found" *ngIf="noPostYet">
-    <p>No post yet...</p>
+    <p>{{noPostsOrLoading}}</p>
+  </div>
+  <div class="posts">
+    <div class="post" *ngFor="let post of articles">
+      <div class="post-ctrl" *ngIf="adminLoggedIn"
+           (click)="delete(post._id)" title="delete post">
+        <i class="fas fa-trash-alt"></i>
+      </div>
+      <div class="post-text" [innerHTML]="getHTML(post.text)"></div>
+    </div>
   </div>
 </div>

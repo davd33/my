@@ -21,17 +21,30 @@ h1 {
 
     overflow: hidden;
 
+    .msg {
+      display: inline-block;
+    }
+
+    .blinking-msg {
+      animation: blinking 1s ease-in infinite;
+    }
+
+    @keyframes blinking {
+      0% {
+        background: $color-1;
+      }
+      100% {
+        background: transparent;
+      }
+    }
+
     .controls {
-      margin-bottom: 10px;
 
       a {
         cursor: pointer;
-        border-radius: 5px;
-        padding: 10px;
-        margin-right: 5px;
+        padding: 0 10px;
 
         &:hover {
-          background: $color-5;
           color: $color-highlight-2;
         }
       }

@@ -2,8 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Router} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
-
-declare var markdown
+import {Markdown} from "../../classes/markdown";
 
 @Component({
   selector: 'app-edit',
@@ -16,6 +15,10 @@ export class BlogEditComponent implements OnInit {
   private _mdHTML = ''
 
   writeMode = true
+
+  private readonly DEFAULT_MSG = 'New Post'
+  message: string = this.DEFAULT_MSG
+  blinkingMsg = false
 
   @ViewChild('apercu') apercuEl: ElementRef
 
@@ -51,8 +54,22 @@ export class BlogEditComponent implements OnInit {
   save() {
     this.blogSvc.editArticle(this._mdText)
       .subscribe(result => {
-        console.log(result)
+        if (result.result.ok === 1) {
+          // document saved
+          this.message = 'Post saved!'
+          this.blinkingMsg = true
+          setTimeout(() => {
+            this.message = this.DEFAULT_MSG
+            this.blinkingMsg = false
+          }, 2000)
+        }
       })
+  }
+
+  get messageClass() {
+    return {
+      'blinking-msg': this.blinkingMsg
+    }
   }
 
   get mdText() {
@@ -64,7 +81,11 @@ export class BlogEditComponent implements OnInit {
   }
 
   updateApercu() {
-    this.apercuEl.nativeElement.innerHTML = markdown.toHTML(this._mdText)
+    this.apercuEl.nativeElement.innerHTML = Markdown.toHTML(this._mdText)
+  }
+
+  get adminLoggedIn() {
+    return this.userSvc.isAdminLoggedIn
   }
 
 }

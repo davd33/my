@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const MongoClient = require('mongodb').MongoClient
+const ObjectId = require('mongodb').ObjectId
 const passport = require('passport')
+const jwt = require('jwt-simple')
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const dbConfig = require('../../config/database')
@@ -18,7 +20,6 @@ const SAFE_ADMIN_USER = {
   username: ADMIN_USER.username,
   id: ADMIN_USER.id
 }
-delete SAFE_ADMIN_USER.password
 
 passport.serializeUser(function(user, done) {
   done(null, user)
@@ -33,19 +34,8 @@ const jwtOptions = {
   secretOrKey: AUTH_SECRET
 }
 passport.use(new JwtStrategy(jwtOptions, function (jwt_payload, done) {
-  console.log('payload')
-  console.log(jwt_payload)
-  return done(null, false)
-  if (username === ADMIN_USER.username && password === ADMIN_USER.password) {
-    let user = ADMIN_USER
-    delete user.password
-    done(null, user)
-  } else done(null, false)
-
   if (jwt_payload.id === 1) {
-    let user = ADMIN_USER
-    delete user.password
-    done(null, user)
+    done(null, SAFE_ADMIN_USER)
   } else done(null, false)
 }))
 
@@ -83,11 +73,33 @@ function findAllArticles(cb) {
   }))
 }
 
+function createArticle(doc, cb) {
+  connect(db => new Promise(resolve => {
+    db.collection(COLLECTIONS.ARTICLE).insert(doc, (err, result) => {
+      if (err) throw err
+      cb(result)
+      resolve()
+    })
+  }))
+}
+
+function removeArticle(id, cb) {
+  connect(db => new Promise(resolve => {
+    db.collection(COLLECTIONS.ARTICLE).deleteOne({_id: ObjectId(id)}, (err, result) => {
+      if (err) throw err
+      cb(result)
+      resolve()
+    })
+  }))
+}
+
 createArticleCollection()
 
 router.post('/login', (req, res) => {
   let verified = verifyAdminLogin(req.body.username, req.body.password)
-  SAFE_ADMIN_USER['token'] = Date.now()
+  SAFE_ADMIN_USER['token'] = jwt.encode({
+    id: ADMIN_USER.id
+  }, AUTH_SECRET)
   res.send(verified ? SAFE_ADMIN_USER : false)
 })
 
@@ -102,5 +114,13 @@ router.post('/blog/edit/:id', passport.authenticate('jwt', {session: SESSIONS_ON
 })
 
 router.put('/blog/edit', passport.authenticate('jwt', {session: SESSIONS_ON}), (req, res) => {
-  res.send({edit:'blog created'})
+  createArticle(req.body, result => {
+    res.send(result)
+  })
+})
+
+router.delete('/blog/edit/:id', passport.authenticate('jwt', {session: SESSIONS_ON}), (req, res) => {
+  removeArticle(req.params.id, result => {
+    res.send(result)
+  })
 })
