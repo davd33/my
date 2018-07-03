@@ -8,14 +8,18 @@
   </div>
   <div class="posts">
     <div class="post" *ngFor="let post of articles">
-      <div class="post-ctrl" *ngIf="adminLoggedIn"
-           (click)="delete(post._id)" title="delete post">
-        <i class="fas fa-trash-alt"></i>
+
+      <div class="controls">
+        <div class="post-ctrl" *ngIf="adminLoggedIn"
+             (click)="delete(post._id)" title="delete post">
+          <i class="fas fa-trash-alt"></i>
+        </div>
+        <div class="post-ctrl" *ngIf="adminLoggedIn"
+             (click)="edit(post._id)" title="edit post">
+          <i class="fas fa-pen-alt"></i>
+        </div>
       </div>
-      <div class="post-ctrl" *ngIf="adminLoggedIn"
-           (click)="edit(post._id)" title="edit post">
-        <i class="fas fa-pen-alt"></i>
-      </div>
+
       <div class="post-text" [innerHTML]="getHTML(post.text)"></div>
     </div>
   </div>

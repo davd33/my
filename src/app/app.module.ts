@@ -16,6 +16,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
 import {UserService} from "./services/user.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import {ConfirmModalService} from "./services/confirm-modal.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     TransportSpeedCalculatorComponent,
     BlogComponent,
     LoginComponent,
-    BlogEditComponent
+    BlogEditComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         component: BlogEditComponent
       },
       {
+        path: 'confirm/:msg',
+        component: ConfirmModalComponent,
+        outlet: 'modal'
+      },
+      {
         path: 'login',
         component: LoginComponent
       },
@@ -69,7 +77,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
       }
     ])
   ],
-  providers: [MouseService, WindowService, BlogService, UserService],
+  providers: [
+    MouseService,
+    WindowService,
+    BlogService,
+    UserService,
+    ConfirmModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

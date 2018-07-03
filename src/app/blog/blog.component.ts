@@ -4,6 +4,8 @@ import {BlogService} from "../services/blog.service";
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {Markdown} from "../classes/markdown";
+import {Title} from "@angular/platform-browser";
+import {ConfirmModalService} from "../services/confirm-modal.service";
 
 @Component({
   selector: 'app-blog',
@@ -17,10 +19,14 @@ export class BlogComponent implements OnInit {
   noPostsOrLoading = 'Loading...'
 
   constructor(private blogSvc: BlogService,
+              private confirmModalSvc: ConfirmModalService,
+              private titleSvc: Title,
               private router: Router,
               private userSvc: UserService) { }
 
   ngOnInit() {
+    this.titleSvc.setTitle('David Rueda - Blog')
+
     this.blogSvc.allArticles.subscribe(articles => {
       this.articles = articles
       this.noPostsOrLoading = 'No post yet...'
@@ -44,13 +50,23 @@ export class BlogComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.blogSvc.delete(id)
-      .subscribe(result => {
-        if (result.ok === 1 && result.n === 1) {
-          // document has been removed
-          this.articles = this.articles.filter(a => a._id !== id)
-        }
-      })
+    this.router.navigate([{
+      outlets: {
+        'modal': ['confirm', 'Do you really want to delete this post?']
+      }
+    }])
+    this.confirmModalSvc.subscribe(actionConfirmed => {
+      if (actionConfirmed) {
+        this.confirmModalSvc.unsubscribe()
+        this.blogSvc.delete(id)
+          .subscribe(result => {
+            if (result.ok === 1 && result.n === 1) {
+              // document has been removed
+              this.articles = this.articles.filter(a => a._id !== id)
+            }
+          })
+      }
+    })
   }
 
   edit(id: string) {

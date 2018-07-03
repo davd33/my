@@ -1,0 +1,63 @@
+@import "../common";
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: bg-fade-in .3s ease-in forwards;
+}
+
+@keyframes bg-fade-in {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: transparentize($color-darker, .1);
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: $color-gray;
+  padding: 20px 50px;
+  color: $color-darker;
+  animation: modal-zoom-in .3s ease-in-out forwards;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px -5px $color-darker;
+
+  .buttons {
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+
+    button {
+      border: 0;
+      padding: 10px;
+      margin-left: 5px;
+      background: transparent;
+      transition: background .2s ease-in;
+
+      &:hover {
+        background: $color-dark;
+        cursor: pointer;
+      }
+
+      &:active {
+        background: transparent;
+      }
+    }
+  }
+}
+
+@keyframes modal-zoom-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

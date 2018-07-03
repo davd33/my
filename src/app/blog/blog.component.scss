@@ -15,7 +15,6 @@ h1 {
     width: 80%;
     margin: 0 auto;
     text-align: center;
-    font-size: 1.5em;
   }
 
   .no-article-found {
@@ -31,12 +30,28 @@ h1 {
       background: $color-1;
       padding: 0 10px;
 
-      .post-ctrl {
-        font-size: .6em;
-        padding: 10px 10px 0 0;
-        cursor: pointer;
-        width: 1em;
-        display: inline-block;
+      .post-text {
+        font-size: 1.5em;
+      }
+
+      .controls {
+        width: calc(100% + 1px);
+        transform: translate(-10px);
+        background: #222;
+        color: white;
+        padding: 0 10px;
+
+        .post-ctrl {
+          font-size: 1em;
+          padding: 10px 10px 10px 0;
+          cursor: pointer;
+          width: 1em;
+          display: inline-block;
+
+          &:hover {
+            color: $color-highlight-3;
+          }
+        }
       }
     }
   }
@@ -46,13 +61,16 @@ h1 {
     margin: 10px auto 20px;
     text-align: left;
     font-size: 1em;
+    background: $color-darker;
+    color: $color-lighter;
+    padding: 10px 0;
 
     a {
       cursor: pointer;
       padding: 0 10px;
 
       &:hover {
-        color: $color-highlight-2;
+        color: $color-highlight-3;
       }
     }
   }

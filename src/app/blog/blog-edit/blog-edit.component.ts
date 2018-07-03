@@ -3,6 +3,7 @@ import {UserService} from "../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BlogService} from "../../services/blog.service";
 import {Markdown} from "../../classes/markdown";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-edit',
@@ -26,12 +27,15 @@ export class BlogEditComponent implements OnInit {
 
   constructor(private userSvc: UserService,
               private blogSvc: BlogService,
+              private titleSvc: Title,
               private router: Router,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     if (!this.userSvc.isAdminLoggedIn) return this.router.navigate(['/blog'])
+
+    this.titleSvc.setTitle('David Rueda - Blog - Editing Post')
 
     // route id parameter
     this.route.paramMap
@@ -69,7 +73,6 @@ export class BlogEditComponent implements OnInit {
   save() {
     this.blogSvc.editArticle(this._mdText, this._postId)
       .subscribe(r => {
-        console.log(r)
         if ((r['ok'] === 1) || (r['result'] && r['result'].ok === 1)) {
           // document saved or modified
           if (r['insertedIds']) {
