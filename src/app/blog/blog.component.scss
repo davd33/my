@@ -19,6 +19,7 @@ h1 {
 
   .no-article-found {
     @extend %some-text;
+    font-size: 1.5em;
   }
 
   .posts {
@@ -32,6 +33,7 @@ h1 {
 
       .post-text {
         font-size: 1.5em;
+        overflow-wrap: break-word;
       }
 
       .controls {

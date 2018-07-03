@@ -51,7 +51,7 @@ h1 {
     }
 
     .edit-container {
-      $min-height: 200px;
+      $min-height: 50vh;
 
       textarea {
         float: left;
@@ -63,11 +63,12 @@ h1 {
         box-shadow: 0 52px 118px -120px $color-darker inset;
         height: 0;
         min-height: 0;
-        background: transparent;
+        background: $color-1;
         font-family: $font-txt;
         transform: translate(-100%);
         opacity: 0;
         padding: 10px;
+        overflow: scroll;
       }
 
       textarea.write-mode {
