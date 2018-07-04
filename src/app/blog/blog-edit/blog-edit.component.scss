@@ -72,12 +72,15 @@ h1 {
       }
 
       textarea.write-mode {
-        animation: textarea-in .2s ease-in forwards;
-        animation-delay: .2s;
+        min-height: $min-height;
+        opacity: 1;
+        transform: translate(0);
       }
 
       textarea.see-mode {
-        animation: textarea-out .2s ease-in forwards;
+        transform: translate(-100%);
+        opacity: 0;
+        min-height: 0;
       }
 
       .apercu {
@@ -89,65 +92,18 @@ h1 {
         background: $color-1;
         padding: 10px;
         min-height: $min-height;
+
+        @extend %blog-markdown;
       }
 
       .apercu.write-mode {
-        animation: apercu-out .2s ease-in forwards;
+        opacity: 0;
+        transform: translate(100%);
       }
 
       .apercu.see-mode {
-        animation: apercu-in .2s ease-in forwards;
-        animation-delay: .2s;
-      }
-
-      @keyframes textarea-out {
-        0% {
-          transform: translate(0);
-          opacity: 1;
-          min-height: 200px;
-        }
-        99% {
-          transform: translate(-100%);
-          opacity: 0;
-        }
-        100% {
-          min-height: 0;
-        }
-      }
-
-      @keyframes textarea-in {
-        0% {
-          min-height: $min-height;
-          transform: translate(-100%);
-          opacity: 0;
-        }
-        100% {
-          min-height: $min-height;
-          opacity: 1;
-          transform: translate(0);
-        }
-      }
-
-      @keyframes apercu-in {
-        0% {
-          opacity: 0;
-          transform: translate(100%);
-        }
-        100% {
-          opacity: 1;
-          transform: translate(0);
-        }
-      }
-
-      @keyframes apercu-out {
-        0% {
-          opacity: 1;
-          transform: translate(0);
-        }
-        100% {
-          opacity: 0;
-          transform: translate(100%);
-        }
+        opacity: 1;
+        transform: translate(0);
       }
     }
   }

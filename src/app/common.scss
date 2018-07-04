@@ -3,6 +3,7 @@ $dotted-img: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAAByt
 $color-highlight: black;
 $color-highlight-2: darkblue;
 $color-highlight-3: yellow;
+$color-highlight-4: red;
 $color-lighter: #ecdcf6;
 $color-light: #222;
 $color-darker: #222222;
@@ -17,6 +18,7 @@ $color-4: transparentize($color-highlight, .2);
 $color-5: transparentize($color-dark, .8);
 
 $font-title: 'Fjalla One', sans-serif;
+$font-title-2: 'Bungee Inline', cursive;
 $font-txt: 'PT Sans Narrow', sans-serif;
 
 %component-title {
@@ -51,4 +53,26 @@ $font-txt: 'PT Sans Narrow', sans-serif;
   border-top: 2px solid $color-highlight;
   min-height: calc(100vh - 40px - 218px);
   background: $color-3;
+}
+
+%blog-markdown {
+
+  ::ng-deep h1 {
+    font-family: $font-title-2;
+    text-transform: uppercase;
+    font-size: 2em;
+    background: $color-lighter;
+    padding: 0 10px;
+    transform: translate(-20px);
+    width: calc(100% + 20px);
+    box-shadow: 0 1px 2px -2px;
+  }
+
+  ::ng-deep code {
+    padding: 10px;
+    display: block;
+    background: transparentize($color-darker, .8);
+    width: 100%;
+    transform: translate(-10px);
+  }
 }

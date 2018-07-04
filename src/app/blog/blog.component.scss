@@ -35,13 +35,7 @@ h1 {
         font-size: 1.5em;
         overflow-wrap: break-word;
 
-        ::ng-deep code {
-          padding: 10px;
-          display: block;
-          background: transparentize($color-darker, .8);
-          width: 100%;
-          transform: translate(-10px);
-        }
+        @extend %blog-markdown;
       }
 
       .controls {
