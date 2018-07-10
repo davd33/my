@@ -7,22 +7,26 @@
     <p>{{noPostsOrLoading}}</p>
   </div>
   <div class="posts">
-    <div class="post" *ngFor="let post of articles">
+    <div *ngFor="let post of articles">
+      <div class="post" *ngIf="post.published || adminLoggedIn" [ngClass]="postClasses">
 
-      <div class="controls" *ngIf="adminLoggedIn" [ngClass]="getPostControlsClasses(post)">
-        <div class="post-ctrl"
-             (click)="delete(post._id)" title="delete post">
-          <i class="fas fa-trash-alt"></i>
+        <div class="controls" *ngIf="adminLoggedIn" [ngClass]="getPostControlsClasses(post)">
+          <div class="ctrls">
+            <div class="post-ctrl"
+                 (click)="delete(post._id)" title="delete post">
+              <i class="fas fa-trash-alt"></i>
+            </div>
+            <div class="post-ctrl"
+                 (click)="edit(post._id)" title="edit post">
+              <i class="fas fa-pen-alt"></i>
+            </div>
+          </div>
+          <div class="post-title">{{getPostTitle(post)}}</div>
         </div>
-        <div class="post-ctrl"
-             (click)="edit(post._id)" title="edit post">
-          <i class="fas fa-pen-alt"></i>
-        </div>
+
+        <div class="post-text" *ngIf="!adminLoggedIn" [innerHTML]="getHTML(post.text)"></div>
+
       </div>
-
-      <div class="post-text"
-           *ngIf="post.published || adminLoggedIn"
-           [innerHTML]="getHTML(post.text)"></div>
     </div>
   </div>
 </div>

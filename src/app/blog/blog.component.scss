@@ -30,7 +30,7 @@ h1 {
     .post {
       margin-bottom: 50px;
       background: $color-1;
-      padding: 0 10px;
+      padding: 0 10px 20px;
 
       .post-text {
         font-size: 1.5em;
@@ -46,15 +46,26 @@ h1 {
         color: white;
         padding: 0 10px;
 
-        .post-ctrl {
-          font-size: 1em;
-          padding: 10px 10px 10px 0;
-          cursor: pointer;
-          width: 1em;
-          display: inline-block;
+        display: flex;
+        justify-content: space-between;
 
-          &:hover {
-            color: $color-highlight-3;
+        .post-title {
+          padding: 10px 0;
+          font-style: italic;
+        }
+
+        .ctrls {
+
+          .post-ctrl {
+            font-size: 1em;
+            padding: 10px 10px 10px 0;
+            cursor: pointer;
+            width: 1em;
+            display: inline-block;
+
+            &:hover {
+              color: $color-highlight-3;
+            }
           }
         }
       }
@@ -63,10 +74,15 @@ h1 {
         background: $color-highlight-3;
         color: $color-darker;
 
-        .post-ctrl:hover {
+        .ctrls .post-ctrl:hover {
           color: $color-highlight-4;
         }
       }
+    }
+
+    .admin-post-list {
+      margin-bottom: 20px;
+      padding: 0 10px;
     }
   }
 

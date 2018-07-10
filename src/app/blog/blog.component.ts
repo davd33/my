@@ -38,10 +38,20 @@ export class BlogComponent implements OnInit {
     return Markdown.toHTML(text)
   }
 
+  get postClasses() {
+    return {
+      'admin-post-list': this.adminLoggedIn
+    }
+  }
+
   getPostControlsClasses(post) {
     return {
       'published': post.published
     }
+  }
+
+  getPostTitle(post) {
+    return post.text.split('\n')[0]
   }
 
   get adminLoggedIn() {

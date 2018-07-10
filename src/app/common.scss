@@ -60,6 +60,8 @@ $font-txt-blog: 'Rajdhani', sans-serif;
 %blog-markdown {
 
   font-family: $font-txt-blog;
+  box-sizing: border-box;
+  text-align: justify;
 
   ::ng-deep h1 {
     font-family: $font-title-2;
