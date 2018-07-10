@@ -16,7 +16,8 @@ export class BlogComponent implements OnInit {
 
   articles: any[] = []
 
-  noPostsOrLoading = 'Loading...'
+  private readonly LOADING_STR = 'Loading...'
+  noPostsOrLoading = this.LOADING_STR
 
   constructor(private blogSvc: BlogService,
               private confirmModalSvc: ConfirmModalService,
@@ -41,7 +42,11 @@ export class BlogComponent implements OnInit {
     return this.userSvc.isAdminLoggedIn
   }
 
-  get noPostYet() {
+  get loading() {
+    return this.noPostsOrLoading === this.LOADING_STR
+  }
+
+  get noPublishedPostYet() {
     let nPublishedPosts = 0
     for (let i = 0; i < this.articles.length; i++) {
       let a = this.articles[i]
@@ -51,6 +56,10 @@ export class BlogComponent implements OnInit {
       }
     }
     return !this.articles || nPublishedPosts === 0
+  }
+
+  get noPostYet() {
+    return !this.articles || this.articles.length === 0
   }
 
   createArticle() {
