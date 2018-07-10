@@ -38,6 +38,12 @@ export class BlogComponent implements OnInit {
     return Markdown.toHTML(text)
   }
 
+  getPostControlsClasses(post) {
+    return {
+      'published': post.published
+    }
+  }
+
   get adminLoggedIn() {
     return this.userSvc.isAdminLoggedIn
   }

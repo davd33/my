@@ -40,7 +40,7 @@ h1 {
       }
 
       .controls {
-        width: calc(100% + 1px);
+        width: 100%;
         transform: translate(-10px);
         background: #222;
         color: white;
@@ -56,6 +56,15 @@ h1 {
           &:hover {
             color: $color-highlight-3;
           }
+        }
+      }
+
+      .published {
+        background: $color-highlight-3;
+        color: $color-darker;
+
+        .post-ctrl:hover {
+          color: $color-highlight-4;
         }
       }
     }
