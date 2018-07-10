@@ -2,6 +2,7 @@
 
 :host {
   @extend %component-container;
+  font-family: $font-txt-blog;
 }
 
 h1 {
