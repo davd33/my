@@ -69,6 +69,14 @@ $font-txt-blog: 'Rajdhani', sans-serif;
     box-shadow: 0 1px 2px -2px;
   }
 
+  ::ng-deep h2 {
+    width: calc(100% + 20px);
+    border-bottom: 1px solid $color-gray;
+    transform: translate(-10px);
+    padding-left: 10px;
+    box-sizing: border-box;
+  }
+
   ::ng-deep code {
     padding: 10px;
     display: block;
