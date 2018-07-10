@@ -212,6 +212,9 @@
         size: cover;
       };
       margin: 10px 80px;
+
+      filter: brightness(.8) contrast(2) grayscale(1);
+      box-shadow: 0 0 5px $color-darker;
     }
   }
 
