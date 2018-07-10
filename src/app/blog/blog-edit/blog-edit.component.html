@@ -3,11 +3,16 @@
   <div class="editing">
     <p class="msg" [ngClass]="messageClass">{{message}}</p>
     <div class="controls">
-      <a (click)="toggleWriteMode()" *ngIf="!writeMode" title="edit"><i class="far fa-eye-slash"></i></a>
-      <a (click)="toggleWriteMode()" *ngIf="writeMode" title="view"><i class="far fa-eye"></i></a>
+      <!--WRITE MODE ON|OFF-->
+      <a (click)="toggleWriteMode()" *ngIf="!writeMode; else writeModeTpl" title="edit"><i class="far fa-eye-slash"></i></a>
+      <ng-template #writeModeTpl>
+        <a (click)="toggleWriteMode()" title="view"><i class="far fa-eye"></i></a>
+      </ng-template>
+      <!--SAVE-->
       <a (click)="save()" title="save file"><i class="fas fa-save"></i></a>
+      <!--TOGGLE PUBLISH-->
       <a (click)="togglePublish()" [title]="isPublished ? 'unpublish' : 'publish'">
-        <i *ngIf="isPublished; else unpublished" class="fas fa-toggle-on"></i>
+        <i *ngIf="isPublished; else unpublished" class="toggle-published fas fa-toggle-on"></i>
         <ng-template #unpublished><i class="fas fa-toggle-off"></i></ng-template>
       </a>
     </div>

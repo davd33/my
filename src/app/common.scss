@@ -4,6 +4,7 @@ $color-highlight: black;
 $color-highlight-2: darkblue;
 $color-highlight-3: yellow;
 $color-highlight-4: red;
+$color-published: green;
 $color-lighter: #ecdcf6;
 $color-light: #222;
 $color-darker: #222222;
@@ -57,6 +58,8 @@ $font-txt-blog: 'Rajdhani', sans-serif;
 }
 
 %blog-markdown {
+
+  font-family: $font-txt-blog;
 
   ::ng-deep h1 {
     font-family: $font-title-2;

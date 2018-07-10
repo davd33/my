@@ -44,6 +44,10 @@ h1 {
         cursor: pointer;
         padding: 0 10px;
 
+        i.toggle-published {
+          color: $color-published;
+        }
+
         &:hover {
           color: $color-highlight-2;
         }
@@ -64,7 +68,8 @@ h1 {
         height: 0;
         min-height: 0;
         background: $color-1;
-        font-family: $font-txt;
+        font-family: $font-txt-blog;
+        font-size: 1.2em;
         transform: translate(-100%);
         opacity: 0;
         padding: 10px;
