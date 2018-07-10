@@ -14,6 +14,7 @@ export class BlogEditComponent implements OnInit {
 
   private _mdText = '# title'
   private _mdHTML = ''
+  private _isPublished = false
 
   private _postId: string
 
@@ -46,9 +47,23 @@ export class BlogEditComponent implements OnInit {
           this.blogSvc.getArticle(this._postId)
             .subscribe(r => {
               this._mdText = r.text
+              this._isPublished = r.published
             })
         }
       })
+  }
+
+  togglePublish() {
+    this.blogSvc.togglePublish(this._postId, this.isPublished)
+      .subscribe(r => {
+        if (r['nModified'] && r['ok']) {
+          this._isPublished = !this._isPublished
+        }
+      })
+  }
+
+  get isPublished() {
+    return this._isPublished;
   }
 
   get textareaClass() {

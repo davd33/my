@@ -3,7 +3,7 @@
   <div class="create-article" *ngIf="adminLoggedIn">
     <a (click)="createArticle()" title="write new post"><i class="fas fa-file-alt"></i></a>
   </div>
-  <div class="no-article-found" *ngIf="noPostYet">
+  <div class="no-article-found" *ngIf="!adminLoggedIn && noPostYet">
     <p>{{noPostsOrLoading}}</p>
   </div>
   <div class="posts">
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="post-text" [innerHTML]="getHTML(post.text)"></div>
+      <div class="post-text" *ngIf="post.published || adminLoggedIn" [innerHTML]="getHTML(post.text)"></div>
     </div>
   </div>
 </div>

@@ -14,7 +14,7 @@ import {ConfirmModalService} from "../services/confirm-modal.service";
 })
 export class BlogComponent implements OnInit {
 
-  articles: any[]
+  articles: any[] = []
 
   noPostsOrLoading = 'Loading...'
 
@@ -42,7 +42,15 @@ export class BlogComponent implements OnInit {
   }
 
   get noPostYet() {
-    return !this.articles || this.articles.length === 0
+    let nPublishedPosts = 0
+    for (let i = 0; i < this.articles.length; i++) {
+      let a = this.articles[i]
+      if (a.published) {
+        nPublishedPosts++
+        break
+      }
+    }
+    return !this.articles || nPublishedPosts === 0
   }
 
   createArticle() {

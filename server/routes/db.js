@@ -70,7 +70,7 @@ DB.prototype.removeArticle = function (id, cb) {
   }))
 }
 
-DB.prototype.editArticle = function (id, doc, cb) {
+DB.prototype.replaceArticle = function (id, doc, cb) {
   this.connect(db => new Promise(resolve => {
     db.collection(this.options.collections.ARTICLE)
       .replaceOne({_id: ObjectId(id)}, doc, (err, result) => {
@@ -78,6 +78,22 @@ DB.prototype.editArticle = function (id, doc, cb) {
         cb(result)
         resolve()
       })
+  }))
+}
+
+DB.prototype.editArticle = function (id, doc, cb) {
+  this.connect(db => new Promise(resolve => {
+    db.collection(this.options.collections.ARTICLE)
+      .updateOne(
+        {_id: ObjectId(id)},
+        {
+          $set: doc
+        },
+        (err, result) => {
+          if (err) throw err
+          cb(result)
+          resolve()
+        })
   }))
 }
 

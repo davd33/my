@@ -18,6 +18,22 @@ export class BlogService {
     this.serviceUtil = new ServiceUtil(isDevMode(), location)
   }
 
+  public togglePublish(id: string, currentState: boolean) {
+    let options = {
+      headers: new HttpHeaders({
+        'Authorization': `bearer ${this.userSvc.user.token}`
+      })
+    }
+
+    if (!currentState) {
+      return this.http.get<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}/publish`, options)
+        .pipe(catchError(ServiceUtil.handleError<any>('togglePublish PUBLISH', null)))
+    }
+
+    return this.http.get<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}/unpublish`, options)
+      .pipe(catchError(ServiceUtil.handleError<any>('togglePublish UNPUBLISH', null)))
+  }
+
   public editArticle(mdText: string, id: string = undefined): Observable<any> {
     if (!this.userSvc.user) this.router.navigate(['/login'])
 
@@ -32,11 +48,11 @@ export class BlogService {
 
     if (!id) {
       return this.http.put(`${this.serviceUtil.apiUrl}/blog/edit`, body, options)
-        .pipe(catchError(ServiceUtil.handleError<any>('get editArticle PUT', null)))
+        .pipe(catchError(ServiceUtil.handleError<any>('get replaceArticle PUT', null)))
     }
 
     return this.http.post<any>(`${this.serviceUtil.apiUrl}/blog/edit/${id}`, body, options)
-      .pipe(catchError(ServiceUtil.handleError<any>('get editArticle POST', null)))
+      .pipe(catchError(ServiceUtil.handleError<any>('get replaceArticle POST', null)))
   }
 
   public delete(id: string): Observable<any> {

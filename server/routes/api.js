@@ -70,12 +70,32 @@ router.post('/blog/edit/:id',
     })
   })
 
+router.get('/blog/edit/:id/publish',
+  passport.authenticate('jwt', {session: dbConfig.auth.sessionsON}),
+  (req, res) => {
+    db.editArticle(req.params.id, {published: true}, result => {
+      res.send(result)
+    })
+  })
+
+router.get('/blog/edit/:id/unpublish',
+  passport.authenticate('jwt', {session: dbConfig.auth.sessionsON}),
+  (req, res) => {
+    db.editArticle(req.params.id, {published: false}, result => {
+      res.send(result)
+    })
+  })
+
 router.put('/blog/edit',
   passport.authenticate('jwt', {session: dbConfig.auth.sessionsON}),
   (req, res) => {
-    db.createArticle(req.body, result => {
-      res.send(result)
-    })
+    db.createArticle(
+      Object.assign(req.body, {
+        published: false
+      }),
+      result => {
+        res.send(result)
+      })
   })
 
 router.delete('/blog/edit/:id',
