@@ -48,6 +48,12 @@ router.post('/login', (req, res) => {
   res.send(verified ? SAFE_ADMIN_USER : false)
 })
 
+router.get('/user/is-admin/:username',
+  passport.authenticate('jwt', {session: dbConfig.auth.sessionsON}),
+  (req, res) => {
+    res.send(req.params.username === ADMIN_USER.username)
+  })
+
 router.get('/blog/all', (req, res) => {
   db.findAllArticles(result => {
     res.send(result)

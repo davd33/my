@@ -24,6 +24,8 @@ export class BlogEditComponent implements OnInit {
   _message: string = this.DEFAULT_MSG
   blinkingMsg = false
 
+  private _adminLoggedIn = false
+
   @ViewChild('apercu') apercuEl: ElementRef
 
   constructor(private userSvc: UserService,
@@ -31,11 +33,16 @@ export class BlogEditComponent implements OnInit {
               private titleSvc: Title,
               private router: Router,
               private route: ActivatedRoute) {
+
+    this.userSvc.isAdminLoggedIn
+      .subscribe(r => {
+        if (!r) return this.router.navigate(['/blog'])
+
+        this._adminLoggedIn = r
+      })
   }
 
   ngOnInit() {
-    if (!this.userSvc.isAdminLoggedIn) return this.router.navigate(['/blog'])
-
     this.titleSvc.setTitle('David Rueda - Blog - Editing Post')
 
     // route id parameter

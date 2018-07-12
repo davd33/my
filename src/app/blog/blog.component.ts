@@ -19,11 +19,19 @@ export class BlogComponent implements OnInit {
   private readonly LOADING_STR = 'Loading...'
   noPostsOrLoading = this.LOADING_STR
 
+  private _adminLoggedIn = false
+
   constructor(private blogSvc: BlogService,
               private confirmModalSvc: ConfirmModalService,
               private titleSvc: Title,
               private router: Router,
-              private userSvc: UserService) { }
+              private userSvc: UserService) {
+
+    this.userSvc.isAdminLoggedIn
+      .subscribe(r => {
+        this._adminLoggedIn = r
+      })
+  }
 
   ngOnInit() {
     this.titleSvc.setTitle('David Rueda - Blog')
@@ -55,7 +63,7 @@ export class BlogComponent implements OnInit {
   }
 
   get adminLoggedIn() {
-    return this.userSvc.isAdminLoggedIn
+    return this._adminLoggedIn
   }
 
   get loading() {

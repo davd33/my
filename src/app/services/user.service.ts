@@ -2,9 +2,9 @@ import {Injectable, isDevMode} from '@angular/core';
 import {ServiceUtil} from "../classes/services/service-util";
 import {User} from "../classes/login/user";
 import {Observable} from "rxjs/internal/Observable";
-import {Article} from "../classes/blog/article";
 import {catchError} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {of} from "rxjs/internal/observable/of";
 
 @Injectable()
 export class UserService {
@@ -16,8 +16,16 @@ export class UserService {
     this.serviceUtil = new ServiceUtil(isDevMode(), location)
   }
 
-  public get isAdminLoggedIn(): boolean {
-    return !!this._user && this._user.username === 'davd33@gmail.com'
+  public get isAdminLoggedIn(): Observable<boolean> {
+    if (!this.isLoggedIn) return of(false)
+
+    let options = {
+      headers: new HttpHeaders({
+        'Authorization': `bearer ${this._user.token}`
+      })
+    }
+    return this.http.get<any>(`${this.serviceUtil.apiUrl}/user/is-admin/${this._user.username}`, options)
+      .pipe(catchError(ServiceUtil.handleError<boolean>('isAdminLoggedIn', false)))
   }
 
   public get isLoggedIn(): boolean {
