@@ -4,6 +4,7 @@ $color-highlight: black;
 $color-highlight-2: darkblue;
 $color-highlight-3: yellow;
 $color-highlight-4: red;
+$color-pending: orangered;
 $color-published: green;
 $color-lighter: #ecdcf6;
 $color-light: #222;
@@ -91,12 +92,25 @@ $font-txt-blog: 'Rajdhani', sans-serif;
   }
 }
 
-$anim-blinking: blinking 1s ease-in infinite;
-@keyframes blinking {
+$anim-blinking-bg: blinking-bg 1s ease-in infinite;
+@keyframes blinking-bg {
   0% {
     background: $color-1;
   }
   100% {
     background: transparent;
+  }
+}
+
+@mixin anim-blinking-color($_color-1, $_color-2) {
+  animation: blinking-color 1s ease-in infinite;
+
+  @keyframes blinking-color {
+    0% {
+      color: $_color-1;
+    }
+    100% {
+      color: $_color-2;
+    }
   }
 }

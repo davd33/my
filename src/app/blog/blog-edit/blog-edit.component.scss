@@ -33,7 +33,7 @@ h1 {
     }
 
     .blinking-msg {
-      animation: $anim-blinking;
+      animation: $anim-blinking-bg;
     }
 
     .controls {
@@ -41,6 +41,10 @@ h1 {
       a {
         cursor: pointer;
         padding: 0 10px;
+
+        &.saving {
+          @include anim-blinking-color($color-pending, $color-darker);
+        }
 
         i.toggle-published {
           color: $color-published;

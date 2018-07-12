@@ -11,7 +11,7 @@
           <a (click)="toggleWriteMode()" title="view"><i class="far fa-eye"></i></a>
         </ng-template>
         <!--SAVE-->
-        <a (click)="save()" title="save file"><i class="fas fa-save"></i></a>
+        <a (click)="save()" [ngClass]="saveButtonClass" title="save file"><i class="fas fa-save"></i></a>
         <!--TOGGLE PUBLISH-->
         <a (click)="togglePublish()" [title]="isPublished ? 'unpublish' : 'publish'">
           <i *ngIf="isPublished; else unpublished" class="toggle-published fas fa-toggle-on"></i>

@@ -27,7 +27,7 @@ h1 {
       text-align: right;
 
       .error-msg {
-        animation: $anim-blinking;
+        animation: $anim-blinking-bg;
         color: $color-highlight-4;
       }
     }

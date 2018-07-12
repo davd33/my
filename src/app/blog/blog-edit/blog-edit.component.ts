@@ -17,6 +17,7 @@ export class BlogEditComponent implements OnInit {
   private _isPublished = false
 
   private _postId: string
+  private _savingPost: boolean = false
 
   writeMode = true
 
@@ -92,7 +93,14 @@ export class BlogEditComponent implements OnInit {
     if (!this.writeMode) this.updateApercu()
   }
 
+  get saveButtonClass() {
+    return {
+      'saving': this._savingPost
+    }
+  }
+
   save() {
+    this._savingPost = true
     this.blogSvc.editArticle(this._mdText, this._postId)
       .subscribe(r => {
         if ((r['ok'] === 1) || (r['result'] && r['result'].ok === 1)) {
@@ -101,6 +109,7 @@ export class BlogEditComponent implements OnInit {
             this._postId = r['insertedIds'][0]
           }
           // display msg
+          this._savingPost = false
           this._message = 'Post saved!';
           this.blinkingMsg = true
           setTimeout(() => {
