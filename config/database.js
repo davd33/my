@@ -6,6 +6,10 @@ if (!process.env.MONGO_DB) {
   console.log('missing env: MONGO_DB')
   process.exit(1)
 }
+if (!process.env.ADMIN_USERNAME) {
+  console.log('missing env: ADMIN_PASSWORD')
+  process.exit(1)
+}
 if (!process.env.ADMIN_PASSWORD) {
   console.log('missing env: ADMIN_PASSWORD')
   process.exit(1)
@@ -23,7 +27,7 @@ module.exports = {
   },
   users: {
     admin: {
-      username: 'davd33@gmail.com',
+      username: process.env.ADMIN_USERNAME,
       password: process.env.ADMIN_PASSWORD,
       id: 1
     }
