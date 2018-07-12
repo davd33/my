@@ -1,6 +1,6 @@
 <h1>Blog Editing</h1>
 <div class="container">
-  <div class="loading" *ngIf="!_adminLoggedIn; else editTpl">Loading...</div>
+  <div class="loading" *ngIf="!adminLoggedIn; else editTpl">Loading...</div>
   <ng-template #editTpl>
     <div class="editing">
       <p class="msg" [ngClass]="messageClass">{{message}}</p>

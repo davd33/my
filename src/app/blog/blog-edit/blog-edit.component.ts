@@ -137,7 +137,7 @@ export class BlogEditComponent implements OnInit {
   }
 
   get adminLoggedIn() {
-    return this.userSvc.isAdminLoggedIn
+    return this._adminLoggedIn
   }
 
 }
