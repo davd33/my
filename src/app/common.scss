@@ -90,3 +90,13 @@ $font-txt-blog: 'Rajdhani', sans-serif;
     transform: translate(-10px);
   }
 }
+
+$anim-blinking: blinking 1s ease-in infinite;
+@keyframes blinking {
+  0% {
+    background: $color-1;
+  }
+  100% {
+    background: transparent;
+  }
+}

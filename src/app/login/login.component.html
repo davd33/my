@@ -2,7 +2,8 @@
 
 <div class="container">
   <div class="form-container">
-    <form [formGroup]="formGroup">
+    <div class="msg"><span [ngClass]="msgClasses">{{message}}</span></div>
+    <form [formGroup]="formGroup" autocomplete="off">
       <div>
         <label>
           Username:

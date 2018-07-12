@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
   controls: {}
   formGroup: FormGroup
 
+  private readonly DEFAULT_MSG = 'Enter your credentials:'
+  private readonly WRONG_CREDS = 'Wrong credentials!'
+  message = this.DEFAULT_MSG
+
   constructor(private userSvc: UserService,
               private fb: FormBuilder,
               private router: Router) {
@@ -32,12 +36,26 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  get msgClasses() {
+    return {
+      'error-msg': this.message === this.WRONG_CREDS
+    }
+  }
+
   login() {
     if (this.formGroup.status === 'VALID') {
       this.userSvc.login(this.formGroup.value.username, this.formGroup.value.password)
         .subscribe(r => {
-          this.userSvc.user = new User(r.id, r.username, r.token)
-          this.router.navigate(['/blog'])
+          if (!r) {
+            // login did not succeed
+            this.message = this.WRONG_CREDS
+            setTimeout(() => {
+              this.message = this.DEFAULT_MSG
+            }, 2000)
+          } else {
+            this.userSvc.user = new User(r.id, r.username, r.token)
+            this.router.navigate(['/blog'])
+          }
         })
     }
   }
