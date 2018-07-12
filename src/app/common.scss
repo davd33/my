@@ -23,6 +23,7 @@ $font-title: 'Fjalla One', sans-serif;
 $font-title-2: 'Bungee Inline', cursive;
 $font-txt: 'PT Sans Narrow', sans-serif;
 $font-txt-blog: 'Rajdhani', sans-serif;
+$font-txt-quotes: 'Arima Madurai', cursive;
 
 %component-title {
   font-family: $font-title;
@@ -81,6 +82,14 @@ $font-txt-blog: 'Rajdhani', sans-serif;
     transform: translate(-10px);
     padding-left: 10px;
     box-sizing: border-box;
+  }
+
+  ::ng-deep blockquote {
+    padding: 0 10px;
+    background: linear-gradient(to right, transparentize($color-darker, .95), transparent);
+    font-style: italic;
+    font-family: $font-txt-quotes;
+    border-left: 4px solid $color-gray;
   }
 
   ::ng-deep code {
