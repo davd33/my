@@ -23,6 +23,12 @@
       }
 
       .phone {
+        .desc {
+          display: inline-block;
+          padding-left: 20px;
+          font-style: italic;
+        }
+
         span {
           padding: 0 5px;
 
@@ -209,7 +215,8 @@
       background: {
         color: $color-lighter;
         image: url(../../assets/my.jpg);
-        size: cover;
+        size: contain;
+        position: center;
       };
       margin: 10px 80px;
 
