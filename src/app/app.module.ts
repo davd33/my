@@ -18,6 +18,7 @@ import {UserService} from "./services/user.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import {ConfirmModalService} from "./services/confirm-modal.service";
+import { TravelComponent } from './travel/travel.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ConfirmModalService} from "./services/confirm-modal.service";
     BlogComponent,
     LoginComponent,
     BlogEditComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    TravelComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,10 @@ import {ConfirmModalService} from "./services/confirm-modal.service";
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'travel',
+        component: TravelComponent
       },
       {
         path: '',

@@ -11,7 +11,6 @@ h1 {
 .container {
   @extend %component-content;
   min-height: calc(100vh - 40px - 3em - 64px);
-  background: rgba(236, 220, 246, 0.9);
   position: fixed;
   top: calc(40px + 64px + 57px);
   right: 0;
@@ -45,7 +44,7 @@ h1 {
           input[type=text], input[type=password] {
             background: transparent;
             border: 0;
-            border-bottom: 2px solid $color-gray;
+            border-bottom: 2px solid $color-lighter;
             font-size: 1em;
             margin-left: 15px;
           }
