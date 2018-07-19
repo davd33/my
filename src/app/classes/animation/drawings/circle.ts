@@ -6,7 +6,8 @@ export class Circle implements Drawing {
 
   constructor(private readonly p5: P5,
               private readonly color: string,
-              private readonly center: Point) {
+              private readonly center: Point,
+              private readonly RADIUS: number) {
   }
 
   public draw() {
@@ -14,6 +15,6 @@ export class Circle implements Drawing {
 
     p.noStroke()
     p.fill(this.color)
-    p.ellipse(this.center.x, this.center.y, 100, 100)
+    p.ellipse(this.center.x, this.center.y, this.RADIUS, this.RADIUS)
   }
 }

@@ -24,7 +24,10 @@ export class Sketch implements SketchFunc {
 
   private init() {
     this._factory = new DrawingFactory(this.p5)
-    this._shapes = this._factory.newRandomShapes(1000)
+    let p = this.p5.instance
+    let radius = 100, w = p.width, h = p.height
+    let nCircles = (w / radius) * (h / radius) * 4
+    this._shapes = this._factory.newRandomShapes(nCircles, radius)
   }
 
   private createCanvas() {
