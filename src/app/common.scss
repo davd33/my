@@ -18,6 +18,7 @@ $color-2: $color-highlight-2;
 $color-3: linear-gradient(to bottom, white, transparentize($color-lighter, .8));
 $color-4: transparentize($color-highlight, .2);
 $color-5: transparentize($color-dark, .8);
+$color-blog-txt: $color-lighter;
 
 $font-title: 'Fjalla One', sans-serif;
 $font-title-2: 'Bungee Inline', cursive;
@@ -74,11 +75,12 @@ $font-txt-quotes: 'Arima Madurai', cursive;
     transform: translate(-20px);
     width: calc(100% + 20px);
     box-shadow: 0 1px 2px -2px;
+    text-shadow: 0 0 1px $color-darker;
   }
 
   ::ng-deep h2 {
     width: calc(100% + 20px);
-    border-bottom: 1px solid $color-gray;
+    border-bottom: 1px solid $color-darker;
     transform: translate(-10px);
     padding-left: 10px;
     box-sizing: border-box;
