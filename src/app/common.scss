@@ -70,6 +70,7 @@ $font-txt-quotes: 'Arima Madurai', cursive;
   ::ng-deep h1 {
     font-family: $font-title-2;
     text-transform: uppercase;
+    text-align: left;
     font-size: 2em;
     background: $color-lighter;
     padding: 0 10px;
